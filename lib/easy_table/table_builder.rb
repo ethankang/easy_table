@@ -21,7 +21,7 @@ module EasyTable
     end
 
     def initialize(collection, template, options)
-      @collection = collection
+      @collection = collection.respond_to?(:each) ? collection : Array(collection)
       @options, @tr_opts = parse_options(options)
       @template = template
       @node = Tree::TreeNode.new('root')
