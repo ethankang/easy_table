@@ -29,9 +29,11 @@ module EasyTable
 
     def build
       content_tag(:table, @options) do
-        concat(content_tag(:thead) do
-          thead
-        end)
+        if (@options[:thead].nil? || @options[:thead] == true)
+          concat(content_tag(:thead) do
+            thead
+          end)
+        end
         concat(content_tag(:tbody) do
           @collection.each do |record|
             concat(content_tag(:tr, tr_opts(record)) do
